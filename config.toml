@@ -1,4 +1,4 @@
-baseurl = "http://localhost:1313/"
+baseurl = "https://researcher-indicate-72055/"
 languageCode = "en-us"
 title = "Tekker"
 truncated = true
