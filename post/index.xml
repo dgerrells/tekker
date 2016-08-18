@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Tekker</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Tekker</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Aug 2016 07:17:23 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Learning Golang by being Thankful</title>
+      <link>http://localhost:1313/post/thankful/</link>
+      <pubDate>Wed, 17 Aug 2016 07:17:23 -0600</pubDate>
+      
+      <guid>http://localhost:1313/post/thankful/</guid>
+      <description>
+
+&lt;h1 id=&#34;goal&#34;&gt;Goal&lt;/h1&gt;
+
+&lt;p&gt;Recently I found myself toying around with Golang and I liked it. I decided to give it a full test run on a small project. To familiarize myself with Golang, Gin (routing with for Go), and Mgo (mongodb driver) I needed something to build. However, the basic TODO list that is so very common felt a little too boring. One thing I recently read about is how being thankful or grateful can actually help with health and improve productivity. I figure the world has plenty of TODO lists out there and decided to make a web application where a user can keep track of a list of items that they are thankful for much like a TODO list. The twist is that the user can also see items other users are thankful for and add said items to their own list.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/thankful-app/thankful.html&#34;&gt;Final Result&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus, I set out to learn a bit more about Golang by creating a web application to help people track items that they are thankful for. But before I dive in, it is important to scope things out a bit more.&lt;/p&gt;
+
+&lt;h1 id=&#34;create-scope-document&#34;&gt;Create Scope Document&lt;/h1&gt;
+
+&lt;p&gt;The first thing I always like doing which I think many miss out on is creating a simple document that describes the goal/intent/scope of the application that you are building. I didn&amp;rsquo;t go full user story mode as this was more of a quick project than something large. I originally created the document in google drive but below you can find it in markdown.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h2 id=&#34;thankful&#34;&gt;Thankful&lt;/h2&gt;
+
+&lt;p&gt;The goal of Thankful is to create a ridiculously easy to use app that allows the user to track things they are thankful for. The user will also have a feed of things other users are thankful for. The user can then share/up vote/repost something in their list from other users.&lt;/p&gt;
+
+&lt;p&gt;The major idea is to have something like a ToDo list app that is very light and can be hosted on heroku or something. The app is for learning Golang as a backend and perhaps react or angular 2 as front end.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tech/Stack:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Backend:&lt;/strong&gt; Golang (gin, mgo driver)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Frontend:&lt;/strong&gt; Angular (angular material, font-awesome, animate.css)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Server Host:&lt;/strong&gt; Heroku&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Db:&lt;/strong&gt; mLab hosting mongodb with db named &amp;ldquo;thankful&amp;rdquo; and collection of &amp;ldquo;thankfuls&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;features&#34;&gt;Features:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Create a Thankful Post:&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;User has a single form input upon enter or button tap create the Thankful post and defocus the input (makes mobile easier to use).&lt;/li&gt;
+&lt;li&gt;Thankful post is saved locally (local data model and storage)&lt;/li&gt;
+&lt;li&gt;Thankful post is saved to server (creator name randomized using something as a seed)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;View User&amp;rsquo;s Thankful Posts&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;User should see a list of their thankful posts order from most to least recent.&lt;/li&gt;
+&lt;li&gt;The posts should show the message, when it was posted, and the author.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feed of Thankful Posts&lt;/strong&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Icon/Button that shows a badge when there are new posts from other users. Long poll on a timer or something.&lt;/li&gt;
+&lt;li&gt;When icon/button is clicked, open new view that shows an exit icon/button and a list of other user&amp;rsquo;s thankful posts.&lt;/li&gt;
+&lt;li&gt;The posts from other users will have a badge showing the number of likes the post has received. When the badge is tapped/clicked increment the posts likes by one on the server.&lt;/li&gt;
+&lt;li&gt;When the card of the thankful post is tapped/clicked, add the post to the users local list.&lt;/li&gt;
+&lt;li&gt;Allow user to filter for trending and recent thankful posts.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;creating-a-backend-with-golang-and-gin&#34;&gt;Creating a backend with Golang and Gin&lt;/h1&gt;
+
+&lt;p&gt;The next step I went down is to create the backend. I started with setting up a single route and file but later used Go&amp;rsquo;s packaging to clean things up. Packaging in Go is quite frankly not fun. Go is very opinionated with how packages should work. I will not go into detail here but I spent quite a bit of time scratching my head figuring it out. It is something I would consider when planning to build something larger.&lt;/p&gt;
+
+&lt;h2 id=&#34;gin-and-routes-with-golang&#34;&gt;Gin and Routes with Golang&lt;/h2&gt;
+
+&lt;p&gt;I used Gin for configuring routes which ended up being about as easy as most would imagine. One thing that was rather nice was being able to setup some middleware for getting a connection to Mongo via Mgo driver and passing the connection along. This was a huge plus in my book for Gin as it was extremely easy and allowed one to create groups of routes that can each have their own middleware. I didn&amp;rsquo;t need to use this feature but was something to note for future projects.&lt;/p&gt;
+
+&lt;p&gt;Another nice thing was the ease of setting up CORS with Gin. Again, hooking into the middleware functionality was extremely easy. This pattern while not new has been far easier than past adventures with Node and Express.&lt;/p&gt;
+
+&lt;h2 id=&#34;mgo-and-data-with-golang&#34;&gt;Mgo and Data with Golang&lt;/h2&gt;
+
+&lt;p&gt;I used Mgo as the driver for MongoDb and Go. There was a bit of a learning curve due to never having worked with bson, json and Go variables. The biggest bit that should save you the most time is to specify an Id before inserting and specifying the bson and json names in the struct/data model.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Thankful struct {
+    Id bson.ObjectId `bson:&amp;quot;_id,omitempty&amp;quot; json:&amp;quot;id&amp;quot;`
+    Message string `json:&amp;quot;message&amp;quot;`
+    Author string `json:&amp;quot;author&amp;quot;`
+    Likes int `json:&amp;quot;likes&amp;quot;`
+    Created time.Time `json:&amp;quot;created&amp;quot;`
+}
+//----- other code -----
+newThankful.Id = bson.NewObjectId()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Other than the few issues I ran into with the data model it was quite trivial to use. If you have used any mongo drivers before, you should be right at home.&lt;/p&gt;
+
+&lt;h2 id=&#34;viper-and-configuring-with-golang&#34;&gt;Viper and Configuring with Golang&lt;/h2&gt;
+
+&lt;p&gt;I decided to throw in some a file for configuring the app for production but primarily just for specifying url for the mongodb connection. I went with Viper a config loaded for Go. It was trivially easy. Created a json config file and loaded it up wit Viper to use in the application. Worked the first time which is rare indeed.&lt;/p&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;One thing I liked most with Go and the overall mentality of it is how concise everything is. I am not a fan of single character naming which Go really likes but damn in less than 200 lines of code I was able to make a light fully functional rest service. The key here is a similar Express app would have far more files, folders, configuration nonsense, dependencies, etc. Even if go wasn&amp;rsquo;t fast, it still feels light.&lt;/p&gt;
+
+&lt;p&gt;I am happy with the results which you can view &lt;a href=&#34;http://localhost:1313/thankful-app/thankful.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/post/about/</link>
+      <pubDate>Wed, 17 Aug 2016 05:30:58 -0600</pubDate>
+      
+      <guid>http://localhost:1313/post/about/</guid>
+      <description>
+
+&lt;h1 id=&#34;what-is-tekker&#34;&gt;What is Tekker?&lt;/h1&gt;
+
+&lt;p&gt;Tekker is a site where I post about my experiences in technology.
+I am an aspiring startup&amp;rsquo;er with the goal of using technology to make peoples lives easier.
+I am right now in the process of building an MVP for my first startup and will be busy with that but will try and post from time to time.&lt;/p&gt;
+
+&lt;p&gt;Please feel free to leave a post.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
