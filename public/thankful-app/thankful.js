@@ -119,7 +119,7 @@ angular.module('ThankfulApp', ['ngAnimate', 'ngMaterial', 'ngStorage'])
     })
     .factory('thankfulService', function($localStorage, $http, $rootScope, helperUtils, $timeout) {
         // $localStorage.$reset();
-        var apiUrl = 'http://thankful-app-api.herokuapp.com/api/grateful';
+        var apiUrl = 'https://thankful-app-api.herokuapp.com/api/grateful';
         var service = {};
         var thankfulSortPredicate = function(a, b) {
             if (a.created < b.created) {

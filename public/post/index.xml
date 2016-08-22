@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Tekker</title>
-    <link>http://localhost:1313/post/</link>
+    <link>https://www.tekker.solutions/post/</link>
     <description>Recent content in Posts on Tekker</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 17 Aug 2016 07:17:23 -0600</lastBuildDate>
-    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.tekker.solutions/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Learning Golang by being Thankful</title>
-      <link>http://localhost:1313/post/thankful/</link>
+      <link>https://www.tekker.solutions/post/thankful/</link>
       <pubDate>Wed, 17 Aug 2016 07:17:23 -0600</pubDate>
       
-      <guid>http://localhost:1313/post/thankful/</guid>
+      <guid>https://www.tekker.solutions/post/thankful/</guid>
       <description>
 
 &lt;h1 id=&#34;goal&#34;&gt;Goal&lt;/h1&gt;
 
 &lt;p&gt;Recently I found myself toying around with Golang and I liked it. I decided to give it a full test run on a small project. To familiarize myself with Golang, Gin (routing with for Go), and Mgo (mongodb driver) I needed something to build. However, the basic TODO list that is so very common felt a little too boring. One thing I recently read about is how being thankful or grateful can actually help with health and improve productivity. I figure the world has plenty of TODO lists out there and decided to make a web application where a user can keep track of a list of items that they are thankful for much like a TODO list. The twist is that the user can also see items other users are thankful for and add said items to their own list.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://localhost:1313/thankful-app/thankful.html&#34;&gt;Final Result&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.tekker.solutions/thankful-app/thankful.html&#34;&gt;Final Result&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Thus, I set out to learn a bit more about Golang by creating a web application to help people track items that they are thankful for. But before I dive in, it is important to scope things out a bit more.&lt;/p&gt;
 
@@ -108,16 +108,16 @@ newThankful.Id = bson.NewObjectId()
 
 &lt;p&gt;One thing I liked most with Go and the overall mentality of it is how concise everything is. I am not a fan of single character naming which Go really likes but damn in less than 200 lines of code I was able to make a light fully functional rest service. The key here is a similar Express app would have far more files, folders, configuration nonsense, dependencies, etc. Even if go wasn&amp;rsquo;t fast, it still feels light.&lt;/p&gt;
 
-&lt;p&gt;I am happy with the results which you can view &lt;a href=&#34;http://localhost:1313/thankful-app/thankful.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am happy with the results which you can view &lt;a href=&#34;https://www.tekker.solutions/thankful-app/thankful.html&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/post/about/</link>
+      <link>https://www.tekker.solutions/post/about/</link>
       <pubDate>Wed, 17 Aug 2016 05:30:58 -0600</pubDate>
       
-      <guid>http://localhost:1313/post/about/</guid>
+      <guid>https://www.tekker.solutions/post/about/</guid>
       <description>
 
 &lt;h1 id=&#34;what-is-tekker&#34;&gt;What is Tekker?&lt;/h1&gt;
