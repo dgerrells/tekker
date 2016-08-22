@@ -97,7 +97,7 @@ angular.module('ThankfulApp', ['ngAnimate', 'ngMaterial', 'ngStorage'])
             })();
         controller.list = [];
         controller.localDataFilterKey = recentLocalDataKey;
-        controller.filter = 'Recent';
+        controller.filter = 'Trending this week';
         controller.likedThankfuls = thankfulService.getLikedThankfuls();
         controller.likeThankful = function(thankful) {
             thankfulService.likeThankful(thankful);
@@ -113,6 +113,7 @@ angular.module('ThankfulApp', ['ngAnimate', 'ngMaterial', 'ngStorage'])
         thankfulService.updateRecentThankfuls().then(updateList).then(function() {
             thankfulService.resetNewThankfulsCount();
         });
+        onFilterChange('Trending this week', '');
         $scope.$watch( function (scope) {
             return controller.filter;
         }, onFilterChange);
